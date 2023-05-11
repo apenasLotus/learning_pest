@@ -1,0 +1,15 @@
+{
+    "name": "gabriel/learning_pest",
+    "autoload": {
+        "psr-4": {
+            "LearningPest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gabriel Vitor",
+            "email": "git624886@gmail.com"
+        }
+    ],
+    "require": {}
+}
