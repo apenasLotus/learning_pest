@@ -13,14 +13,11 @@ class LocatorService
   {
   }
 
-  public function createRent(ModelCar $car): void
+  public function createRent(ModelCar $car, ModelUser $user): void
   {
-    isset($this->rent) ? $this->checkRentalStatus($car->getUser()) : null;
+    isset($this->rent) ? $this->checkRentalStatus($user) : null;
 
-    $userName = $car->getUser()
-      ->name();
-
-    $this->rent[] = $car;
+    $this->rent[$user->name()] = $car;
   }
 
   public function getRents(): array
@@ -30,10 +27,7 @@ class LocatorService
 
   private function checkRentalStatus(ModelUser $user)
   {
-    foreach ($this->rent as $key => $modelCar) {
-
-      if ($modelCar->getUser()->name() == $user->name())
-        $modelCar->isAlreadyRented() ? throw new \Exception("Já possui uma locação ativa", 409) : '';
-    }
+    if ($this->rent[$user->name()])
+      $this->rent[$user->name()]->isAlreadyRented() ? throw new \Exception("Já possui uma locação ativa", 409) : '';
   }
 }

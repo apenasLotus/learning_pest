@@ -6,26 +6,19 @@ use LearningPest\Models\Users\ModelUser;
 
 class ModelCar extends AbstractRent
 {
-  private ModelUser $user;
   private string $name;
   private float $value;
   private bool $alreadyRented;
   private \DateTimeImmutable $rentDate;
 
-  public function __construct(ModelUser $user, string $carName, float $value)
+  public function __construct( string $carName, float $value)
   {
-    $this->user = $user;
     $this->name = $carName;
     $this->value = $value;
 
     $this->rentDate = parent::rentDate();
 
     $this->alreadyRented = true;
-  }
-
-  public function getUser(): ModelUser
-  {
-    return $this->user;
   }
 
   public function getName(): string
