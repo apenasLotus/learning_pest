@@ -19,12 +19,14 @@ it('Mesmo usuário não pode fazer uma nova locação tendo uma já ativa', func
 })->with('mockUsers')
   ->throws(Exception::class, 'Já possui uma locação ativa');
 
-it('Retorno do array deve estar na ordem Ana e Francisco ao final da locação', function ($ana, $pedro) {
+it('Retorno do array deve estar na ordem Ana e Pedro ao final da locação', function ($ana, $pedro) {
   $this->locator->createRent($this->car, $ana);
   $this->locator->createRent($this->car, $pedro);
 
   $rents = $this->locator->getRents();
-  expect($rents)->toHaveCount(2);
+  expect($rents)
+    ->toHaveCount(2)
+    ->toHaveKeys(['Ana', 'Pedro']);
 })->with('mockUsers');
 
 dataset('mockUsers', function () {
@@ -35,7 +37,6 @@ dataset('mockUsers', function () {
   $pedro = new ModelUser($pedro->getMockData());
 
   return [
-    [$ana],
-    [$pedro]
+    [$ana, $pedro]
   ];
 });

@@ -11,7 +11,7 @@ class ModelCar extends AbstractRent
   private bool $alreadyRented;
   private \DateTimeImmutable $rentDate;
 
-  public function __construct( string $carName, float $value)
+  public function __construct(string $carName, float $value)
   {
     $this->name = $carName;
     $this->value = $value;

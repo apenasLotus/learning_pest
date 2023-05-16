@@ -20,6 +20,6 @@ $locator->createRent($car, $ana);
 $locator->createRent($car, $francisco);
 
 echo '<pre>';
-print_r($locator->getRents());
+print_r($car->isAlreadyRented());
 echo '</pre>';
 exit;
